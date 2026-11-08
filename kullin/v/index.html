@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invitación a Kulliñ</title>
+<meta name="description" content="Te invitaron a ser amigos en Kulliñ, el juego de mascota que se juega caminando por Chile.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1c2420">
+<style>
+  :root {
+    --pergamino: #f3eddd;
+    --pergamino-sombra: #e9e0c9;
+    --tinta: #2b2620;
+    --tinta-suave: #6b5d4f;
+    --bosque: #1f3a2e;
+    --musgo: #4b6b4f;
+    --cobre: #b5651d;
+    --oro: #d9a441;
+    --madera: #8c5a30;
+    --madera-luz: #b07a44;
+    --madera-sombra: #5e3f22;
+    --noche: #1c2420;
+    --px: 4px;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--noche); }
+  body {
+    margin: 0;
+    color: var(--tinta);
+    font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(217, 164, 65, 0.18), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 6px),
+      var(--noche);
+    min-height: 100vh;
+  }
+  main { max-width: 480px; margin: 0 auto; padding: 20px 16px 48px; }
+  img.px { image-rendering: pixelated; image-rendering: crisp-edges; }
+  h1, h2 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; margin: 0; }
+
+  /* Marcos pixel, como en el juego: borde escalonado de tinta y luz por dentro. */
+  .marco {
+    position: relative;
+    background: var(--pergamino);
+    margin: var(--px);
+    box-shadow:
+      0 calc(-1 * var(--px)) 0 0 var(--tinta), 0 var(--px) 0 0 var(--tinta),
+      calc(-1 * var(--px)) 0 0 0 var(--tinta), var(--px) 0 0 0 var(--tinta),
+      inset 0 calc(-1 * var(--px)) 0 0 var(--pergamino-sombra);
+  }
+  .madera {
+    background: var(--madera);
+    color: var(--pergamino);
+    box-shadow:
+      0 calc(-1 * var(--px)) 0 0 var(--tinta), 0 var(--px) 0 0 var(--tinta),
+      calc(-1 * var(--px)) 0 0 0 var(--tinta), var(--px) 0 0 0 var(--tinta),
+      inset 0 var(--px) 0 0 var(--madera-luz), inset 0 calc(-1 * var(--px)) 0 0 var(--madera-sombra);
+  }
+
+  .cabecera { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 4px 0 18px; }
+  .cabecera img { width: 52px; height: 52px; border-radius: 12px; }
+  .cabecera .placa { padding: 6px 18px 8px; }
+  .cabecera h1 { font-size: 1.7rem; text-shadow: 2px 2px 0 var(--madera-sombra); }
+
+  .escena { padding: 0; overflow: hidden; background: var(--madera-sombra); }
+  .escena img { display: block; width: 100%; height: auto; }
+
+  .invitacion { margin-top: 30px; padding: 24px 18px 18px; text-align: center; }
+  .sello {
+    position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 6px; padding: 4px 12px 5px; white-space: nowrap;
+    font-weight: 800; font-size: 0.9rem; letter-spacing: 0.02em;
+  }
+  .sello img { width: 16px; height: 16px; }
+  .invitacion h2 { font-size: 1.45rem; color: var(--bosque); margin-top: 6px; }
+  .invitacion p { margin: 8px 0 0; color: var(--tinta-suave); }
+  .boleto {
+    margin: 16px auto 0; max-width: 300px; padding: 10px 12px 12px;
+    border: 3px dashed var(--madera-luz); background: #fbf6e9;
+  }
+  .boleto small { display: block; color: var(--tinta-suave); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+  .codigo { font: 800 1.9rem/1.2 ui-monospace, "Cascadia Mono", Consolas, monospace; letter-spacing: 0.14em; color: var(--bosque); }
+  .copiar {
+    margin-top: 6px; border: 0; background: none; color: var(--cobre); font: inherit; font-weight: 700;
+    font-size: 0.9rem; cursor: pointer; padding: 4px 8px;
+  }
+
+  .botones { display: grid; gap: 14px; margin: 22px 0 8px; }
+  .boton {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 14px 16px 15px; font-weight: 800; font-size: 1.05rem; text-decoration: none;
+    transition: transform 0.06s;
+  }
+  .boton:active { transform: translateY(2px); }
+  .boton img { width: 24px; height: 24px; }
+  .boton.secundario { background: var(--pergamino); color: var(--bosque); }
+  .boton.secundario {
+    box-shadow:
+      0 calc(-1 * var(--px)) 0 0 var(--tinta), 0 var(--px) 0 0 var(--tinta),
+      calc(-1 * var(--px)) 0 0 0 var(--tinta), var(--px) 0 0 0 var(--tinta),
+      inset 0 calc(-1 * var(--px)) 0 0 var(--pergamino-sombra);
+  }
+  .nota { color: #c9bca6; text-align: center; font-size: 0.85rem; margin: 6px 0 0; }
+
+  .seccion { margin-top: 34px; }
+  .titulo { display: flex; align-items: center; gap: 10px; color: var(--pergamino); margin: 0 4px 14px; }
+  .titulo img { width: 24px; height: 24px; }
+  .titulo h2 { font-size: 1.25rem; }
+  .titulo::after { content: ""; flex: 1; height: 3px; background: repeating-linear-gradient(90deg, var(--madera-luz) 0 6px, transparent 6px 10px); }
+
+  .juntos { display: grid; gap: 14px; }
+  .tarjeta { display: flex; gap: 14px; align-items: center; padding: 14px; }
+  .tarjeta .icono {
+    flex: none; width: 56px; height: 56px; display: grid; place-items: center;
+    background: var(--pergamino-sombra); box-shadow: inset 0 0 0 3px var(--madera-luz);
+  }
+  .tarjeta .icono img { width: 32px; height: 32px; }
+  .tarjeta strong { display: block; color: var(--bosque); }
+  .tarjeta span { color: var(--tinta-suave); font-size: 0.95rem; }
+
+  .pasos { list-style: none; margin: 0; padding: 14px 16px; counter-reset: paso; }
+  .pasos li { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; counter-increment: paso; }
+  .pasos li + li { border-top: 2px dashed var(--pergamino-sombra); }
+  .pasos li::before {
+    content: counter(paso); flex: none; width: 30px; height: 30px; display: grid; place-items: center;
+    background: var(--cobre); color: var(--pergamino); font-weight: 800;
+    box-shadow: inset 0 3px 0 0 #d08540, inset 0 -3px 0 0 #7d4513;
+  }
+
+  .que-es { padding: 16px 18px; }
+  .que-es p { margin: 0 0 10px; }
+  .que-es p:last-child { margin: 0; color: var(--bosque); font-weight: 700; font-style: italic; }
+
+  footer { margin-top: 30px; text-align: center; color: #c9bca6; font-size: 0.85rem; }
+  footer a { color: var(--oro); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <header class="cabecera">
+    <img src="../../logo.png" alt="">
+    <div class="placa madera"><h1>Kulliñ</h1></div>
+  </header>
+
+  <div class="marco escena">
+    <img id="escena" class="px" src="img/refugio_tarde.png" width="164" height="90"
+         alt="Un perro y un gato se saludan junto al buzón del refugio, con la banderita levantada">
+  </div>
+
+  <section id="invitacion" class="marco invitacion">
+    <div class="sello madera"><img class="px" src="img/icono_corazon.png" alt="">Invitación</div>
+    <h2 id="titulo-invitacion">¡Te invitaron a Kulliñ!</h2>
+    <p id="bajada-invitacion">Camina con tu mascota y descubre la flora, la fauna y la funga de Chile.</p>
+    <div id="boleto" class="boleto" hidden>
+      <small>Código de amigo</small>
+      <div id="codigo" class="codigo"></div>
+      <button id="copiar" class="copiar" type="button">Copiar código</button>
+    </div>
+  </section>
+
+  <div class="botones">
+    <a id="abrir" class="boton madera" href="#" hidden><img class="px" src="img/icono_huella.png" alt="">Abrir en Kulliñ</a>
+    <a id="tienda" class="boton secundario" href="https://play.google.com/store/apps/details?id=cl.kullin.app"><img class="px" src="img/icono_play.png" alt="">Descargar en Google Play</a>
+  </div>
+  <p id="nota-play" class="nota">Gratis para Android.</p>
+
+  <section id="seccion-juntos" class="seccion" hidden>
+    <div class="titulo"><img class="px" src="img/icono_corazon.png" alt=""><h2>Lo que harán juntos</h2></div>
+    <div class="juntos">
+      <div class="marco tarjeta">
+        <div class="icono"><img class="px" src="img/icono_refugio.png" alt=""></div>
+        <div><strong>Visitar sus refugios</strong><span>Sus mascotas juegan juntas en el living, el gimnasio y el baño.</span></div>
+      </div>
+      <div class="marco tarjeta">
+        <div class="icono"><img class="px" src="img/icono_libro.png" alt=""></div>
+        <div><strong>Comparar sus guías</strong><span>Mira las especies que vio y descubre cuáles te faltan.</span></div>
+      </div>
+      <div class="marco tarjeta">
+        <div class="icono"><img class="px" src="img/icono_trofeo.png" alt=""></div>
+        <div><strong>Correr en el circuito</strong><span>Intenta superar su mejor tiempo en el gimnasio.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="seccion-pasos" class="seccion" hidden>
+    <div class="titulo"><img class="px" src="img/icono_binoculares.png" alt=""><h2>Cómo aceptar</h2></div>
+    <ol class="marco pasos">
+      <li id="paso-uno">Instala Kulliñ desde el botón de arriba.</li>
+      <li>Adopta tu mascota y termina el recorrido por el refugio.</li>
+      <li>La invitación aparece sola: activa Amigos y envía la solicitud.</li>
+    </ol>
+  </section>
+
+  <section class="seccion">
+    <div class="titulo"><img class="px" src="img/icono_libro.png" alt=""><h2>¿Qué es Kulliñ?</h2></div>
+    <div class="marco que-es">
+      <p>Un juego educativo para Android: tus caminatas reales se convierten en expediciones por 14 ecosistemas de Chile, del desierto florido a los fiordos del sur.</p>
+      <p>Cada especie que encuentras se revela de a poco en tu guía, con su información y datos curiosos.</p>
+      <p>Para protegerla, primero hay que conocerla.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p id="nota-edad" hidden>Los amigos están disponibles desde los 13 años.</p>
+    <p><a href="../../privacidad.html">Política de privacidad</a> · <a href="../../">alfariwis.github.io</a></p>
+  </footer>
+</main>
+<script>
+  // Lo que va después del # nunca llega a GitHub: solo lo lee esta página, en tu teléfono.
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    var dato = decodeURIComponent((location.hash || '').slice(1)).trim();
+    var tienda = 'https://play.google.com/store/apps/details?id=cl.kullin.app';
+    var esQr = /^q-[A-Z2-9]{16}$/.test(dato);
+    var codigo = dato.toUpperCase();
+    var esCodigo = /^[A-Z2-9]{8}$/.test(codigo);
+    var hora = new Date().getHours();
+    if (hora >= 20 || hora < 7) $('escena').src = 'img/refugio_noche.png';
+
+    if (esCodigo) {
+      $('titulo-invitacion').textContent = '¡Te invitaron a ser amigos!';
+      $('bajada-invitacion').textContent = 'Alguien quiere que sus mascotas se conozcan en Kulliñ.';
+      $('codigo').textContent = codigo;
+      $('boleto').hidden = false;
+      // Play guarda el código al instalar; Kulliñ lo lee la primera vez que se abre.
+      tienda += '&referrer=' + encodeURIComponent('amigo=' + codigo);
+      $('tienda').href = tienda;
+      $('copiar').addEventListener('click', function () {
+        var listo = function () { $('copiar').textContent = '¡Copiado!'; };
+        if (navigator.clipboard) navigator.clipboard.writeText(codigo).then(listo, function () {});
+      });
+    }
+    if (esQr) {
+      $('titulo-invitacion').textContent = 'Este QR se escanea desde Kulliñ';
+      $('bajada-invitacion').textContent = 'Abre el buzón de tu refugio, toca Agregar y luego Escanear QR: quedan como amigos al instante.';
+      $('paso-uno').textContent = 'Instala Kulliñ desde el botón de arriba y vuelve a escanear el QR desde el juego.';
+    }
+    if (esCodigo || esQr) {
+      $('seccion-juntos').hidden = false;
+      $('seccion-pasos').hidden = false;
+      $('nota-edad').hidden = false;
+    }
+    if ((esCodigo || esQr) && /Android/i.test(navigator.userAgent)) {
+      var abrir = $('abrir');
+      abrir.href = 'intent://alfariwis.github.io/kullin/v?c=' + encodeURIComponent(esCodigo ? codigo : dato) +
+        '#Intent;scheme=https;package=cl.kullin.app;S.browser_fallback_url=' + encodeURIComponent(tienda) + ';end';
+      abrir.hidden = false;
+      $('nota-play').textContent = '¿Ya tienes Kulliñ? Toca "Abrir en Kulliñ".';
+    }
+  })();
+</script>
+</body>
+</html>

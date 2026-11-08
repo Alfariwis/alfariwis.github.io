@@ -1,0 +1,23 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "cl.kullin.app",
+      "sha256_cert_fingerprints": [
+        "88:84:44:AA:4A:0C:4F:43:19:82:F6:38:73:18:36:7B:1F:53:16:E0:AB:C3:83:9C:1D:AF:C3:79:57:6C:6F:52",
+        "95:AD:4E:44:8C:0B:FB:FA:14:C4:98:17:5E:5D:87:EE:70:13:0F:21:5B:3B:8D:95:54:BE:CF:56:1A:67:7F:0F"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "cl.kullin.app.prueba",
+      "sha256_cert_fingerprints": [
+        "98:D0:39:B9:70:B4:0E:F2:70:59:C0:CE:0C:11:0F:FF:B1:E6:FD:A8:C9:72:9E:36:98:25:9A:05:1E:BC:98:00"
+      ]
+    }
+  }
+]
